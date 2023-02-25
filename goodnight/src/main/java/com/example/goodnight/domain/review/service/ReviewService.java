@@ -27,7 +27,9 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
-    public void removeReview(ReviewDto dto) {
+    public void removeReview(Long id) {
+        Review review = reviewRepository.findById(id).orElseThrow(null);
+        reviewRepository.delete(review);
 
     }
     }
