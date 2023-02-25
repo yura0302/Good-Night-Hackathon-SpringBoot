@@ -2,6 +2,7 @@ package com.example.goodnight.domain.review.service;
 
 import com.example.goodnight.domain.restaurant.domain.Restaurant;
 import com.example.goodnight.domain.restaurant.service.RestaurantService;
+import com.example.goodnight.domain.review.domain.Review;
 import com.example.goodnight.domain.review.dto.request.ReviewDto;
 import com.example.goodnight.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,16 @@ public class ReviewService {
 
     public  void addReview(ReviewDto dto) {
         Restaurant restaurant = restaurantService.findById(dto.getRestaurantId());
+        Review review = Review.builder()
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .restaurant(restaurant)
+                .build();
+        reviewRepository.save(review);
+    }
+
+    public void removeReview(ReviewDto dto) {
+
     }
     }
 
