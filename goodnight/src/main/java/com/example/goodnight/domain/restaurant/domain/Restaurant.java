@@ -1,5 +1,6 @@
 package com.example.goodnight.domain.restaurant.domain;
 
+import com.example.goodnight.domain.review.domain.Review;
 import com.example.goodnight.global.entity.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class Restaurant extends BaseEntity {
     @Column(name = "is_activated", nullable = false)
     private boolean isActivated;
 
-    @OneToMany(mappedBy = "restaurantId")
+    @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews = new ArrayList<>();
 
     @Builder
@@ -37,7 +38,7 @@ public class Restaurant extends BaseEntity {
         this.reviews = reviews;
         this.isActivated = true;
     }
-
+    public void update(String category) {this.category = category;}
     public void delete() {
         this.isActivated = false;
     }
