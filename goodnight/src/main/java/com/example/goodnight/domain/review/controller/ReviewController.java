@@ -23,4 +23,9 @@ public class ReviewController {
     public ReviewResDto getReview(@PathVariable Long id){
         return reviewService.getReview(id);
     }
+
+    @PutMapping("/api/v1/reviews")
+    public void updateReview(@RequestBody ReviewDto dto ){
+        reviewService.updateReview(dto.getRestaurantId(),dto.getTitle(),dto.getContent());
+    }
 }

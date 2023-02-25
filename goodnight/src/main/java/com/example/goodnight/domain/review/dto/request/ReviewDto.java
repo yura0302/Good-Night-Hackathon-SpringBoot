@@ -7,4 +7,5 @@ public class ReviewDto {
     private String title;
     private String content;
     private Long restaurantId;
+
 }

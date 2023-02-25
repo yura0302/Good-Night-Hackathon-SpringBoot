@@ -42,6 +42,10 @@ public class ReviewService {
                 .build();
         return dto;
     }
+    public void updateReview(Long id,String title, String content){
+        Review review = reviewRepository.findById(id).orElseThrow(null);
+        review.update(title,content);
+    }
     }
 
 
