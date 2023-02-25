@@ -4,6 +4,7 @@ import com.example.goodnight.domain.restaurant.domain.Restaurant;
 import com.example.goodnight.domain.restaurant.service.RestaurantService;
 import com.example.goodnight.domain.review.domain.Review;
 import com.example.goodnight.domain.review.dto.request.ReviewDto;
+import com.example.goodnight.domain.review.dto.response.ReviewResDto;
 import com.example.goodnight.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,16 @@ public class ReviewService {
     public void removeReview(Long id) {
         Review review = reviewRepository.findById(id).orElseThrow(null);
         reviewRepository.delete(review);
-
+    }
+    public void getReviews(Long id) {
+        Review review = reviewRepository.findById(id)).orElseThrow(null);
+        Restaurant restaurant = review.getRestaurant();
+        ReviewResDto dto = new ReviewResDto.builder()
+                .restaurantId(restaurant.getRestaurantName())
+                .title(restaurant.getTitle())
+                .content(review.getContent())
+                .build();
+        return dto;
     }
     }
 
