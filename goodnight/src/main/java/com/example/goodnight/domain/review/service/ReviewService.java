@@ -33,11 +33,11 @@ public class ReviewService {
         reviewRepository.delete(review);
     }
     public void getReviews(Long id) {
-        Review review = reviewRepository.findById(id)).orElseThrow(null);
+        Review review = reviewRepository.findById(id).orElseThrow(null);
         Restaurant restaurant = review.getRestaurant();
-        ReviewResDto dto = new ReviewResDto.builder()
-                .restaurantId(restaurant.getRestaurantName())
-                .title(restaurant.getTitle())
+        ReviewResDto dto = ReviewResDto.builder()
+                .restaurantName(restaurant.getRestaurantName())
+                .title(review.getTitle())
                 .content(review.getContent())
                 .build();
         return dto;
