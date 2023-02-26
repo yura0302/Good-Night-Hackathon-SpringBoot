@@ -7,9 +7,13 @@ import com.example.goodnight.domain.review.dto.request.ReviewDto;
 import com.example.goodnight.domain.review.dto.response.ReviewResDto;
 import com.example.goodnight.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -42,10 +46,13 @@ public class ReviewService {
                 .build();
         return dto;
     }
-    public void updateReview(Long id,String title, String content){
+    public static void updateReview(Long id, String title, String content){
         Review review = reviewRepository.findById(id).orElseThrow(null);
         review.update(title,content);
     }
+
+    public List<Review> getAllReviews(Pageable pageable , Optional<String>title, Optional<String>content){
+        return reviewRepository.findAll(pageable, title, content);
     }
 
 

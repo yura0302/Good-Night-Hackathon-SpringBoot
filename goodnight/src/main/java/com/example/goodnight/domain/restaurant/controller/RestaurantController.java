@@ -36,6 +36,6 @@ public class RestaurantController {
 
     @DeleteMapping("/api/v1/restaurants/{id}")
     public void deleteRestaurantV1(@PathVariable Long id) {
-        restaurantService.delete(id);
+        restaurantService.remove(id);
     }
 }
